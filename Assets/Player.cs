@@ -32,10 +32,7 @@ public class Player : MonoBehaviour {
 
 		if (Input.GetKeyDown ("space")) {
 
-			Debug.Log ("pressed space");
-
 			Bullet myBullet = (Bullet)Instantiate(bullet, transform.position,transform.rotation);
-
 			myBullet.direction = new Vector2(0,1);
 			myBullet.speed = 0.05f;
 		}

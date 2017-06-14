@@ -22,14 +22,5 @@ public class Bullet : MonoBehaviour {
 		}
 	}
 
-	void OnTriggerEnter(Collider other)
-	{
-		Debug.Log ("entered collision");
 
-		if (other.gameObject.tag == "Enemy")
-			{
-			Debug.Log("we in here");
-				Destroy (other.gameObject);
-			}
-	}
 }
