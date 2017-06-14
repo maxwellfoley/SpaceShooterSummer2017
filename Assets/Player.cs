@@ -1,17 +1,22 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class Player : MonoBehaviour {
 
 	public float speed;
 	public Bullet bullet;
+	public int maxHealth;
+	int health;
 	GameObject GameArea;
 	BoxCollider GameAreaCollider; 
+	public Text HealthText;
 
 	// Use this for initialization
 	void Start () {
 		GameArea = GameObject.Find ("GameArea"); 
 		GameAreaCollider = GameArea.GetComponent<BoxCollider>(); 
+		this.setHealth(maxHealth);
 	}
 	
 	// Update is called once per frame
@@ -36,6 +41,18 @@ public class Player : MonoBehaviour {
 			myBullet.direction = new Vector2(0,1);
 			myBullet.speed = 0.05f;
 		}
-			
+
+		if (health == 0) {
+			Object.Destroy (this.gameObject);
+		}
+	}
+
+	public int getHealth() {
+		return health;
+	}
+
+	public void setHealth(int i){
+		health = i;
+		HealthText.text = i.ToString();
 	}
 }
