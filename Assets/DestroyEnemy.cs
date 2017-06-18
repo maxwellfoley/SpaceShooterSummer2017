@@ -4,12 +4,10 @@ using System.Collections;
 
 public class DestroyEnemy : MonoBehaviour {
 
-	Text ScoreText;
-	int score;
+	Player player;
 	// Use this for initialization
 	void Start () {
-		score = 0;
-		ScoreText = GameObject.Find ("ScoreText").GetComponent<Text>();
+		player = GameObject.Find ("Player").GetComponent<Player>();
 	}
 	
 	// Update is called once per frame
@@ -22,9 +20,7 @@ public class DestroyEnemy : MonoBehaviour {
 		if (other.gameObject.tag == "Enemy")
 		{
 			Destroy (other.gameObject);
-			score++;
-			Debug.Log (score);
-  			ScoreText.text = "Score " + score;
+			player.setScore (player.getScore () + 1);
 		}
 	}
 }

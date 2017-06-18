@@ -9,9 +9,12 @@ public class Player : MonoBehaviour {
 	public Bullet bullet;
 	public int maxHealth;
 	int health;
+	int score;
 	GameObject GameArea;
 	BoxCollider GameAreaCollider; 
 	public Text HealthText;
+	public Text ScoreText;
+
 
 	// Use this for initialization
 	void Start () {
@@ -63,5 +66,14 @@ public class Player : MonoBehaviour {
 	public void setHealth(int i){
 		health = i;
 		HealthText.text = "health " + i.ToString();
+	}
+
+	public int getScore() {
+		return score;
+	}
+
+	public void setScore(int i) {
+		score = i;
+		ScoreText.text = "score " + i.ToString(); 
 	}
 }
