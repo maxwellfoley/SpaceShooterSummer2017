@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
@@ -9,17 +10,29 @@ public class GameManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		DontDestroyOnLoad (this);
 		GameOverPanel.gameObject.SetActive (false);
-
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+
+		//Pauses game
+		if(Input.GetKeyDown(KeyCode.P))
+		{
+			if(Time.timeScale == 1)
+			{
+				Time.timeScale = 0;
+			} else if (Time.timeScale == 0)
+			{
+				Time.timeScale = 1;
+			}
+		}
+
 	}
 
 	public void GameOver() {
 		GameOverPanel.gameObject.SetActive (true);
-
+		SceneManager.LoadScene("firstscene");
 	}
 }

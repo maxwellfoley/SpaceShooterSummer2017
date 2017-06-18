@@ -16,7 +16,7 @@ public class HorizontalMovement: MonoBehaviour {
 	}
 
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 		float xPoint = transform.position.x;
 
 		if (xPoint < startPoint - range / 2) {

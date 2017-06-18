@@ -13,7 +13,7 @@ public class MoveDownToPlayer : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 		float yPoint = transform.position.y;
  		float playerYPoint = player.transform.position.y;
 					

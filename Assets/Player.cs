@@ -5,7 +5,7 @@ using System.Collections;
 public class Player : MonoBehaviour {
 
 	public Vector2 speed;
-	Vector3 speed3;
+	//Vector3 speed3;
 	public Bullet bullet;
 	public int maxHealth;
 	int health;
@@ -21,11 +21,11 @@ public class Player : MonoBehaviour {
 		GameArea = GameObject.Find ("GameArea"); 
 		GameAreaCollider = GameArea.GetComponent<BoxCollider>(); 
 		this.setHealth(maxHealth);
-		speed3 = new Vector3 (speed.x, speed.y, 0);
+	//	speed3 = new Vector3 (speed.x, speed.y, 0);
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 		float moveHorizontal = Input.GetAxis ("Horizontal");
 		float moveVertical = Input.GetAxis ("Vertical");
 

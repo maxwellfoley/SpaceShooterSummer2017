@@ -13,7 +13,7 @@ public class SpawnEnemy : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 		counter++;
 		if (counter % frequency == 0) {
 			Instantiate (enemy, transform.position, transform.rotation);

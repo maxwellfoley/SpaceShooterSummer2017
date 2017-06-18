@@ -13,7 +13,7 @@ public class ShootRegularly : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 		counter++;
 		if (counter % frequency == 0) {
 			Bullet myBullet = (Bullet)Instantiate (bullet, transform.position, transform.rotation);
