@@ -32,7 +32,12 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public void GameOver() {
+		Time.timeScale = 0;
 		GameOverPanel.gameObject.SetActive (true);
+	}
+
+	public void RestartGame() {
 		SceneManager.LoadScene("firstscene");
+		Time.timeScale = 1;
 	}
 }
