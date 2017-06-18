@@ -4,7 +4,8 @@ using System.Collections;
 
 public class Player : MonoBehaviour {
 
-	public float speed;
+	public Vector2 speed;
+	Vector3 speed3;
 	public Bullet bullet;
 	public int maxHealth;
 	int health;
@@ -17,6 +18,7 @@ public class Player : MonoBehaviour {
 		GameArea = GameObject.Find ("GameArea"); 
 		GameAreaCollider = GameArea.GetComponent<BoxCollider>(); 
 		this.setHealth(maxHealth);
+		speed3 = new Vector3 (speed.x, speed.y, 0);
 	}
 	
 	// Update is called once per frame
@@ -24,27 +26,34 @@ public class Player : MonoBehaviour {
 		float moveHorizontal = Input.GetAxis ("Horizontal");
 		float moveVertical = Input.GetAxis ("Vertical");
 
+		if (moveHorizontal != 0 || moveVertical != 0) {
+			
+			Vector3 movement = new Vector3 (moveHorizontal, moveVertical, 0.0f);
 
-		Vector3 movement = new Vector3 (moveHorizontal, moveVertical, 0.0f);
+			//check whether or not the player will be moving out of bounds
+			Vector3 currentPosition = transform.position;
+			Vector3 speedMovement = new Vector3 (movement.x * speed.x, movement.y * speed.y, 0.0f);
+			Vector3 futurePosition = currentPosition + speedMovement; 
 
-		//check whether or not the player will be moving out of bounds
-		Vector3 currentPosition = transform.position;
-		Vector3 futurePosition = currentPosition + (movement * speed); 
+			bool movementInBounds = GameAreaCollider.bounds.Contains (futurePosition);
 
-		bool movementInBounds = GameAreaCollider.bounds.Contains (futurePosition);
+			if (movementInBounds) {
+				transform.Translate (speedMovement);
+			}
 
-		if(movementInBounds) transform.Translate (movement * speed);
+			if (health <= 0) {
+				//Object.Destroy (this.gameObject);
+				GameObject.Find("Master").GetComponent<GameManager>().GameOver();
+			}
+		}
 
 		if (Input.GetKeyDown ("space")) {
 
-			Bullet myBullet = (Bullet)Instantiate(bullet, transform.position,transform.rotation);
-			myBullet.direction = new Vector2(0,1);
+			Bullet myBullet = (Bullet)Instantiate (bullet, transform.position, transform.rotation);
+			myBullet.direction = new Vector2 (0, 1);
 			myBullet.speed = 0.05f;
 		}
 
-		if (health == 0) {
-			Object.Destroy (this.gameObject);
-		}
 	}
 
 	public int getHealth() {
@@ -53,6 +62,6 @@ public class Player : MonoBehaviour {
 
 	public void setHealth(int i){
 		health = i;
-		HealthText.text = i.ToString();
+		HealthText.text = "health " + i.ToString();
 	}
 }
