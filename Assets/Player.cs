@@ -14,12 +14,19 @@ public class Player : MonoBehaviour {
 	BoxCollider GameAreaCollider; 
 	public Text HealthText;
 	public Text ScoreText;
+	float halfWidth;
+	float halfHeight;
 
 
 	// Use this for initialization
 	void Start () {
 		GameArea = GameObject.Find ("GameArea"); 
 		GameAreaCollider = GameArea.GetComponent<BoxCollider>(); 
+
+		//half the width and height of the player's bounding box
+		halfWidth = GetComponent<BoxCollider>().bounds.extents.x;
+		halfHeight = GetComponent<BoxCollider>().bounds.extents.y;
+
 		this.setHealth(maxHealth);
 	//	speed3 = new Vector3 (speed.x, speed.y, 0);
 	}
@@ -33,16 +40,15 @@ public class Player : MonoBehaviour {
 			
 			Vector3 movement = new Vector3 (moveHorizontal, moveVertical, 0.0f);
 
-			//check whether or not the player will be moving out of bounds
+			//calculate desired position
 			Vector3 currentPosition = transform.position;
 			Vector3 speedMovement = new Vector3 (movement.x * speed.x, movement.y * speed.y, 0.0f);
 			Vector3 futurePosition = currentPosition + speedMovement; 
 
-			bool movementInBounds = GameAreaCollider.bounds.Contains (futurePosition);
+			//clamp position to game bounds
+			transform.position = new Vector3 (Mathf.Clamp (futurePosition.x, GameAreaCollider.bounds.min.x + halfWidth, GameAreaCollider.bounds.max.x - halfWidth),
+				                          Mathf.Clamp (futurePosition.y, GameAreaCollider.bounds.min.y + halfHeight, GameAreaCollider.bounds.max.y - halfHeight), 0.0f);
 
-			if (movementInBounds) {
-				transform.Translate (speedMovement);
-			}
 
 			if (health <= 0) {
 				//Object.Destroy (this.gameObject);

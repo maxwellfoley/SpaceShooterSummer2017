@@ -16,10 +16,10 @@ public class Bullet : MonoBehaviour {
 	void FixedUpdate () {
 		transform.Translate (new Vector3 (direction.x * speed, direction.y*speed, 0));
 		counter++;
-
+		/*
 		if (counter > 100) {
 			Object.Destroy (this.gameObject);
-		}
+		}*/
 	}
 
 
