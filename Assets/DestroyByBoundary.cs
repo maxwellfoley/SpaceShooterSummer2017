@@ -16,7 +16,6 @@ public class DestroyByBoundary : MonoBehaviour {
 
 	void OnTriggerExit(Collider other)
 	{
-		Debug.Log (other.tag);
 		if (other.tag == "Bullet" || other.tag == "Enemy") {
 			Destroy (other.gameObject);
 	

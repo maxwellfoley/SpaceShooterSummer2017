@@ -6,12 +6,13 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
-	public GameObject GameOverPanel;
-
+	GameObject GameOverPanel;
 	// Use this for initialization
 	void Start () {
 		DontDestroyOnLoad (this);
-		GameOverPanel.gameObject.SetActive (false);
+		Debug.Log("in game manager start");
+		GameOverPanel = GameObject.Find ("GameOverScreen");
+		GameOverPanel.SetActive (false);
 	}
 	
 	// Update is called once per frame
@@ -32,12 +33,13 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public void GameOver() {
+		GameOverPanel.SetActive (true);
 		Time.timeScale = 0;
-		GameOverPanel.gameObject.SetActive (true);
 	}
 
 	public void RestartGame() {
 		SceneManager.LoadScene("firstscene");
 		Time.timeScale = 1;
+		GameOverPanel = GameObject.Find ("GameOverScreen");
 	}
 }

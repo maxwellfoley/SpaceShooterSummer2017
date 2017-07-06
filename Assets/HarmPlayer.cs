@@ -3,9 +3,10 @@ using System.Collections;
 
 public class HarmPlayer : MonoBehaviour {
 
+	GameObject master;
 	// Use this for initialization
 	void Start () {
-	
+		master = GameObject.Find ("Master");
 	}
 	
 	// Update is called once per frame
@@ -19,6 +20,8 @@ public class HarmPlayer : MonoBehaviour {
 		{
 			Player player = other.gameObject.GetComponent(typeof (Player)) as Player;
 			player.setHealth (player.getHealth()- 1);
+			other.GetComponent<PlayerGraphicsManager> ().animateHit();
+
 		}
 	}
 
