@@ -7,24 +7,36 @@ public class HorizontalMovement: MonoBehaviour {
 	public float range; 
 	public float speed; 
 	float direction;
+	bool paused;
 
 
 	// Use this for initialization
 	void Start () {
-		 startPoint = transform.position.x; 
+		startPoint = transform.position.x; 
 		direction = 1;
+		paused = false;
 	}
 
 	// Update is called once per frame
 	void FixedUpdate () {
-		float xPoint = transform.position.x;
+		if (!paused) {
+			float xPoint = transform.position.x;
 
-		if (xPoint < startPoint - range / 2) {
-			direction = 1;
-		} else if (xPoint > startPoint + range / 2) {
-			direction = -1;
+			if (xPoint < startPoint - range / 2) {
+				direction = 1;
+			} else if (xPoint > startPoint + range / 2) {
+				direction = -1;
+			}
+
+			transform.Translate (new Vector3 (direction * speed, 0, 0));
 		}
+	}
 
-		transform.Translate (new Vector3 (direction * speed, 0, 0));
+	void PauseMovement () {
+		paused = true;
+	}
+
+	void UnpauseMovement () {
+		paused = false;
 	}
 }
