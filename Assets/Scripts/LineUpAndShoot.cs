@@ -8,7 +8,7 @@ public class LineUpAndShoot : MonoBehaviour {
 	GameObject player;
 	// Use this for initialization
 	void Start () {
-		player = GameObject.Get ("Player");
+		player = GameObject.Find ("Player");
 	}
 	
 	// Update is called once per frame
@@ -17,7 +17,7 @@ public class LineUpAndShoot : MonoBehaviour {
 		if (player.transform.position.x < transform.position.x) {
 			horizontalMovement = -1 * speed.x;
 		} else {
-			horizonalMovement = speed.x;
+			horizontalMovement = speed.x;
 		}
 	}
 }
