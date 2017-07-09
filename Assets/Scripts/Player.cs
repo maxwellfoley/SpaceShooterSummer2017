@@ -6,7 +6,7 @@ public class Player : MonoBehaviour {
 
 	public Vector2 speed;
 	//Vector3 speed3;
-	public Bullet bullet;
+	public GameObject bullet;
 	public int maxHealth;
 	int health;
 	int score;
@@ -58,9 +58,9 @@ public class Player : MonoBehaviour {
 
 		if (Input.GetKeyDown ("space")) {
 
-			Bullet myBullet = (Bullet)Instantiate (bullet, transform.position, transform.rotation);
-			myBullet.direction = new Vector2 (0, 1);
-			myBullet.speed = 0.05f;
+			GameObject myBullet = Instantiate (bullet, transform.position, transform.rotation);
+			myBullet.GetComponent<MoveStraight>().direction = new Vector2 (0, 1);
+			myBullet.GetComponent<MoveStraight>().speed = 0.05f;
 		}
 
 	}

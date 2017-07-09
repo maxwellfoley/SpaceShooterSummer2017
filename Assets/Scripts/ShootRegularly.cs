@@ -4,7 +4,7 @@ using System.Collections;
 public class ShootRegularly : MonoBehaviour {
 
 	int counter;
-	public Bullet bullet;
+	public GameObject bullet;
 	public int frequency;
 	int offset;
 
@@ -18,9 +18,9 @@ public class ShootRegularly : MonoBehaviour {
 	void FixedUpdate () {
 		counter++;
 		if (counter % frequency == offset) {
-			Bullet myBullet = (Bullet)Instantiate (bullet, transform.position, transform.rotation);
-			myBullet.direction = new Vector2 (0, -1);
-			myBullet.speed = 0.05f;
+			GameObject myBullet = Instantiate (bullet, transform.position, transform.rotation);
+			myBullet.GetComponent<MoveStraight>().direction = new Vector2 (0, -1);
+			myBullet.GetComponent<MoveStraight>().speed = 0.05f;
 		}
 	}
 }

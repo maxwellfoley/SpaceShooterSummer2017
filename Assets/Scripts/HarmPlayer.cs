@@ -21,8 +21,9 @@ public class HarmPlayer : MonoBehaviour {
 			Player player = other.gameObject.GetComponent(typeof (Player)) as Player;
 			player.setHealth (player.getHealth()- 1);
 			other.GetComponent<PlayerGraphicsManager> ().animateHit();
-
 		}
+
+		Destroy (this.gameObject);
 	}
 
 }

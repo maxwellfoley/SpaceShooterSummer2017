@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Bullet : MonoBehaviour {
+public class MoveStraight : MonoBehaviour {
 
 	public Vector2 direction; 
 	public float speed; 
