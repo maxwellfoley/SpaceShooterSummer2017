@@ -18,9 +18,7 @@ public class ShootRegularly : MonoBehaviour {
 	void FixedUpdate () {
 		counter++;
 		if (counter % frequency == offset) {
-			GameObject myBullet = Instantiate (bullet, transform.position, transform.rotation);
-			myBullet.GetComponent<MoveStraight>().direction = new Vector2 (0, -1);
-			myBullet.GetComponent<MoveStraight>().speed = 0.05f;
+			GameObject myBullet = Instantiate (bullet, transform.position + new Vector3(.001f,0.0f,0.0f), transform.rotation);
 		}
 	}
 }

@@ -12,8 +12,8 @@ public class Player : MonoBehaviour {
 	int score;
 	GameObject GameArea;
 	BoxCollider GameAreaCollider; 
-	public Text HealthText;
-	public Text ScoreText;
+	Text HealthText;
+	Text ScoreText;
 	float halfWidth;
 	float halfHeight;
 
@@ -21,6 +21,8 @@ public class Player : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		GameArea = GameObject.Find ("GameArea"); 
+		HealthText = GameObject.Find ("HealthText").GetComponent<Text>();
+		ScoreText = GameObject.Find ("ScoreText").GetComponent<Text>(); 
 		GameAreaCollider = GameArea.GetComponent<BoxCollider>(); 
 
 		//half the width and height of the player's bounding box
