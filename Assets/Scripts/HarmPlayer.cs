@@ -4,6 +4,7 @@ using System.Collections;
 public class HarmPlayer : MonoBehaviour {
 
 	GameObject master;
+	public bool DestroySelfOnCollision;
 	// Use this for initialization
 	void Start () {
 		master = GameObject.Find ("Master");
@@ -23,7 +24,9 @@ public class HarmPlayer : MonoBehaviour {
 			other.GetComponent<PlayerGraphicsManager> ().animateHit();
 		}
 
-		Destroy (this.gameObject);
+		if (DestroySelfOnCollision) {
+			Destroy (this.gameObject);
+		}
 	}
 
 }

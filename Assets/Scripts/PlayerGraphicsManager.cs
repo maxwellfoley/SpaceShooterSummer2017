@@ -7,7 +7,7 @@ public class PlayerGraphicsManager : MonoBehaviour {
 	Animator cameraAnim;
 	// Use this for initialization
 	void Start () {
-		GameObject camera = GameObject.Find ("Main Camera");
+		GameObject camera = GameObject.Find ("MainCamera");
 		Debug.Log (camera.GetComponent<Animator>());
 		cameraAnim = camera.GetComponent<Animator> ();
 	}
